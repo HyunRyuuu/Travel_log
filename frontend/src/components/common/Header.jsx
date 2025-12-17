@@ -130,12 +130,18 @@ const Header = () => {
                                 </button>
 
                                 <div className="search__form-wrap">
-                                    <div className='search__form-inner'>
+                                    <form
+                                        className='search__form-inner'
+                                        onSubmit = {(e) => {
+                                            e.preventDefault();
+                                            // navigate(`/search?q=${keyword}`)
+                                        }}
+                                    >
                                         <input type="text" placeholder='검색어를 입력해주세요' />
                                         <button type='submit'>
                                             <img src="/images/common/icon_search.png" alt="" />
                                         </button>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
