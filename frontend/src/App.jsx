@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './reset.css';
 import './App.css';
 import './common.css';
-// import './main.css';
+
 // import './sub.css';
 
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ import SignUp from './contents/user/SignUp';
 import Login from './contents/user/Login';
 // import Logout from './contents/user/Logout';
 import MyPage from './contents/user/MyPage';
+import TopButton from './components/common/TopButton';
 import Footer from './components/common/Footer';
 
 import ScrollHandler from './components/common/ScrollHandler';
@@ -51,6 +52,8 @@ function App() {
       {/* <Route path="/Logout" element={<Logout />}></Route> */}
       <Route path="/MyPage" element={<MyPage />}></Route>
     </Routes>
+
+    <TopButton />
 
     {/* footer */}
     <Footer />

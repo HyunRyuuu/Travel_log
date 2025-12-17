@@ -173,35 +173,7 @@ const SignUp = () => {
       return;
     }
 
-    if (password !== password2) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    if (password.length < 6) {
-      alert('비밀번호는 최소 6자 이상이어야 합니다.');
-      return;
-    }
-
-    if (idAvailable !== true) {
-      alert('아이디 중복 확인이 필요합니다.');
-      return;
-    }
-
-    try {
-      await signUp({
-        userid: form.userid,
-        password: form.password,
-        gender: form.gender,
-        email: form.email,
-        username: form.username,
-        phone: form.phone,
-      });
-      alert('회원가입이 완료되었습니다.');
-    } catch (err) {
-      alert('회원가입에 실패했습니다.');
-    }
-  };
+const SignUp = () => {
 
   return (
     <div className="signup-page">
