@@ -28,6 +28,11 @@ const SignUp = () => {
     phone: null,
   });
 
+  const [file, setFile] = useState('')
+  const [view, setView] = useState('')
+  const API_BASE = 'http://localhost:5000'
+  const DEFAULT_IMG = `${API_BASE}/static/user_img/default.jpg`
+
   const [file, setFile] = useState('');
   const [view, setView] = useState('');
   const API_BASE = 'http://localhost:5000';
@@ -97,6 +102,11 @@ const SignUp = () => {
       alert('중복 확인을 완료해주세요.');
       return;
     }
+
+    const formData = new FormData();
+    Object.entries(form).forEach(([KeyboardEvent, value]) => {
+      formData.append('profile_image', file)
+    })
 
     try {
       await signUp(form);
@@ -216,8 +226,22 @@ const SignUp = () => {
             <a href="/Login" className="text">
               계정을 가지고 계십니까?
             </a>
+    <div className="signup-wrap">
+      <div className="signup-inner">
+        <div className="signup-item">
+          <div className="profile">
+            <div className="img-wrap">
+              {view ? (
+                <img src={view || DEFAULT_IMG} alt='프로필 미리보기' />
+              ) : (
+                <span className='preview' ><img src={DEFAULT_IMG} alt="" /></span>
+              )}
+            </div>
+            <label className="text"> 프로필 사진 추가 <input type='file' accept='image/*' onChange={handleFileChange} hidden /></label>
           </div>
         </div>
+
+        <div className="bg-wrap"></div>
       </div>
 
       <div className="bg-wrap"></div>
