@@ -29,6 +29,7 @@ const SignUp = () => {
     phone: null,
   });
 
+  const phoneRegex = /^010-?\d{4}-?\d{4}$/;
   const [file, setFile] = useState('')
   const [view, setView] = useState('')
   const API_BASE = 'http://localhost:5000'
@@ -50,6 +51,13 @@ const SignUp = () => {
       ...prev,
       [name]: value,
     }));
+
+    if (!phoneRegex.test(value)){
+      setDupMsg(prev => ({
+        ...prev,
+        phone:'전화번호 형식이 다릅니다.',
+      }))
+    }
 
     // 입력이 바뀌면 중복 메시지 & 상태 초기화
     if (['userid', 'email', 'username', 'phone'].includes(name)) {
@@ -96,9 +104,9 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { userid, password, password2, email, username } = form;
+    const { userid, password, password2, email, username, phone } = form;
 
-    if (!userid || !password || !password2 || !email || !username) {
+    if (!userid || !password || !password2 || !email || !username || !phone) {
       alert('필수 항목을 모두 입력해주세요.');
       return;
     }
@@ -112,11 +120,16 @@ const SignUp = () => {
       alert('중복 확인을 완료해주세요.');
       return;
     }
+    // if (phone !== phoneRegex){
+    //   alert('전화번호 형식이 다릅니다.')
+    //   return;
+    // }
 
     const formData = new FormData();
 
     Object.entries(form).forEach(([Key, value]) => {
-      formData.append(Key, value)
+      if (Key !== 'password2'){
+        formData.append(Key, value)}
     })
 
     if(file){
@@ -220,6 +233,7 @@ const SignUp = () => {
               onBlur={() => checkField('phone', form.phone)}
             />
             <p>{dupMsg.phone}</p>
+
 
             <button className="signup-submit-button" type="submit">
               회원가입
