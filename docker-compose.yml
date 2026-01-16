@@ -1,6 +1,6 @@
 services:
   backend:
-    image: emraud119/flask-backend:latest
+    image: hyunryuuu/flask-backend:latest
     ports:
       - "5000:5000"
     environment:
@@ -9,7 +9,7 @@ services:
       DATABASE_UR: sqlite:///Travel.db  # Dockerfile에서 복사된 경로에 맞게 설정
 
   frontend:
-    image: emraud119/react-frontend:latest
+    image: hyunryuuu/react-frontend:latest
     ports:
       - "80:80"
     depends_on:
